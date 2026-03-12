@@ -35,7 +35,7 @@ function StatsModels.apply_schema(t::NSplineTerm,
     return NSplineTerm(term, t.df.n, t.basis)
 end
 
-function StatsModels.modelcols(p::NSplineTerm{<:ContinuousTerm, <:Integer}, d::NamedTuple)
+function StatsModels.modelcols(p::NSplineTerm{<:ContinuousTerm,<:Integer}, d::NamedTuple)
     col = modelcols(p.term, d)
     if isnothing(p.basis)
         p.basis = Splines2.ns_(col; df=p.df)
@@ -47,7 +47,7 @@ StatsModels.terms(p::NSplineTerm) = terms(p.term)
 StatsModels.termvars(p::NSplineTerm) = StatsModels.termvars(p.term)
 StatsModels.width(p::NSplineTerm) = 1
 function StatsModels.coefnames(p::NSplineTerm)
-    return string.("ns(", coefnames(p.term), ", ",  1:p.df, ")")
+    return string.("ns(", coefnames(p.term), ", ", 1:(p.df), ")")
 end
 
 end # module
