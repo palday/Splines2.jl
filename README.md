@@ -39,7 +39,7 @@ The keyword arguments include one of:
 - `intercept :: Bool = false`: bool for whether to include an intercept
 - `df :: Int32 = order - 1 + Int32(intercept)`: degrees of freedom
 - `knots :: Union{Array{T,1}, Nothing} = nothing`: full set of knots (excluding repeats)
-- `centre :: Union{T,Nothing} = nothing)`: value to centre the splines
+- `center :: Union{T,Nothing} = nothing)`: value to center the splines
 - `ders :: Int32 = 0`: derivatives of the splines
 
 
@@ -66,9 +66,9 @@ The keyword arguments include one of:
 - `intercept :: Bool = false`: bool for whether to include an intercept
 - `df :: Int32 = order - 1 + Int32(intercept)`: degrees of freedom
 - `knots :: Union{Array{T,1}, Nothing} = nothing`: full set of knots (excluding repeats)
-- `centre :: Union{T,Nothing} = nothing)`: value to centre the splines
+- `center :: Union{T,Nothing} = nothing)`: value to center the splines
 
-The documentation for the other bases are similar, except that the I-splines do not include the `centre` argument.
+The documentation for the other bases are similar, except that the I-splines do not include the `center` argument.
 
 ## Examples
 
@@ -107,7 +107,7 @@ julia> ns(x, boundary_knots=(0.0,1.0), interior_knots=[0.2])
  0.360161   0.633938 
  0.272611   0.84855
  
- julia> ms(x, knots=[0.0,0.4,1.0], centre=0.4)
+ julia> ms(x, knots=[0.0,0.4,1.0], center=0.4)
 
 11×4 Array{Float64,2}:
  -1.44      -1.92       -0.64      0.0      

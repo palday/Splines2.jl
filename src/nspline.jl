@@ -67,7 +67,7 @@ The keyword arguments include one of:
 - `intercept :: Bool = false`: bool for whether to include an intercept
 - `df :: Int = order - 1 + Int(intercept)`: degrees of freedom
 - `knots :: Union{Array{T,1}, Nothing} = nothing`: full set of knots (excluding repeats)
-- `centre :: Union{T,Nothing} = nothing)`: value to centre the splines
+- `center :: Union{T,Nothing} = nothing)`: value to center the splines
 
 # Examples
 ```jldoctest
@@ -88,7 +88,7 @@ function ns_(x::Array{T,1};
              intercept::Bool=false,
              df::Int=order - 3 + Int(intercept),
              knots::Union{Array{T,1},Nothing}=nothing,
-             centre::Union{T,Nothing}=nothing) where {T<:Real}
+             center::Union{T,Nothing}=nothing) where {T<:Real}
     (boundary_knots, interior_knots) = spline_args(x; boundary_knots=boundary_knots,
                                                    interior_knots=interior_knots,
                                                    order=order, intercept=intercept, df=df,
@@ -96,8 +96,8 @@ function ns_(x::Array{T,1};
     spline = NSplineBasis(boundary_knots, interior_knots, order, intercept)
     function eval(x::Array{T,1}; ders::Int=0)
         b = basis(spline, x, ders)
-        if (centre != nothing && ders == 0)
-            bc = basis(spline, centre, ders)
+        if (center != nothing && ders == 0)
+            bc = basis(spline, center, ders)
             for i in 1:size(b, 1)
                 b[i, :] -= bc
             end
@@ -124,7 +124,7 @@ The keyword arguments include one of:
 - `intercept :: Bool = false`: bool for whether to include an intercept
 - `df :: Int = order - 1 + Int(intercept)`: degrees of freedom
 - `knots :: Union{Array{T,1}, Nothing} = nothing`: full set of knots (excluding repeats)
-- `centre :: Union{T,Nothing} = nothing)`: value to centre the splines
+- `center :: Union{T,Nothing} = nothing)`: value to center the splines
 - `ders :: Int = 0`: derivatives of the splines
 
 # Examples
