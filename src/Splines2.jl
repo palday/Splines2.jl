@@ -12,20 +12,20 @@ zeroArray(a :: Array{T}) where T<:Real = OffsetArray(a,(size(a).*0).-1)
 # type definitions
 abstract type AbstractSplineBasis{T<:Real} end
 # Note: we have used OffsetArray for converting from C code
-mutable struct SplineBasis{T<:Real} <: AbstractSplineBasis{T}
+struct SplineBasis{T<:Real} <: AbstractSplineBasis{T}
     order::Int # order of the spline
     nknots::Int # number of knots
     ncoef::Int # number of coefficients
     knots::OffsetArray{T,1} # knot vector
 end
-mutable struct BSplineBasis{T<:Real} <: AbstractSplineBasis{T}
+struct BSplineBasis{T<:Real} <: AbstractSplineBasis{T}
     spline_basis::SplineBasis{T}
     boundary_knots::Tuple{T,T}
     interior_knots::Union{Array{T,1}, Nothing}
     intercept::Bool
     df::Int
 end
-mutable struct NSplineBasis{T<:Real} <: AbstractSplineBasis{T}
+struct NSplineBasis{T<:Real} <: AbstractSplineBasis{T}
     b_spline_basis::BSplineBasis{T}
     qmat::Array{T,2}
     tl0::Array{T,1}
