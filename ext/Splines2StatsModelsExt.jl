@@ -40,7 +40,7 @@ function StatsModels.modelcols(p::NSplineTerm{<:ContinuousTerm,<:Integer}, d::Na
     if isnothing(p.basis)
         p.basis = NSplineBasis(col; p.df)
     end
-    return ns(col, p.basis)
+    return p.basis(col)
 end
 
 StatsModels.terms(p::NSplineTerm) = terms(p.term)
